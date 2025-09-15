@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Farming Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sensor-card {
+            border: none;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 150px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sensor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .sensor-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+        }
+        
+        .card-blue { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); }
+        .card-blue::before { background: #2196F3; }
+        
+        .card-green { background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%); }
+        .card-green::before { background: #4CAF50; }
+        
+        .card-cyan { background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%); }
+        .card-cyan::before { background: #00BCD4; }
+        
+        .card-orange { background: linear-gradient(135deg, #fff3e0 0%, #ffcc02 100%); }
+        .card-orange::before { background: #FF9800; }
+        
+        .card-red { background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); }
+        .card-red::before { background: #F44336; }
+        
+        .sensor-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .sensor-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .sensor-unit {
+            font-size: 1rem;
+            color: #777;
+            font-weight: 500;
+        }
+        
+        .progress-bar-custom {
+            height: 8px;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        
+        .progress-custom {
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 10px;
+        }
+        
+        .icon-sensor {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            opacity: 0.3;
+        }
+        
+        @media (max-width: 768px) {
+            .sensor-card {
+                height: auto;
+                min-height: 120px;
+            }
+            
+            .sensor-value {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="mb-0">
+                        <i class="fas fa-seedling me-3"></i>
+                        Smart Farming
+                    </h1>
+                    <p class="mb-0 mt-2 opacity-75">Dashboard Monitoring Sistem Pertanian Pintar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card sensor-card card-blue">
+                    <i class="fas fa-tint icon-sensor"></i>
+                    <div class="sensor-title">Kelembaban (RH)</div>
+                    <div class="sensor-value">54 <span class="sensor-unit">%</span></div>
+                    <div class="progress progress-custom">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 54%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TDS -->
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card sensor-card card-green">
+                    <i class="fas fa-flask icon-sensor"></i>
+                    <div class="sensor-title">TDS</div>
+                    <div class="sensor-value">400 <span class="sensor-unit">ppm</span></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card sensor-card card-cyan">
+                    <i class="fas fa-eye icon-sensor"></i>
+                    <div class="sensor-title">Kekeruhan (Turbid)</div>
+                    <div class="sensor-value">18 <span class="sensor-unit">NTU</span></div>
+                    <div class="progress progress-custom">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 30%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card sensor-card card-orange">
+                    <i class="fas fa-thermometer-half icon-sensor"></i>
+                    <div class="sensor-title">Temperatur Air (WTemp)</div>
+                    <div class="sensor-value">25 <span class="sensor-unit">C</span></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card sensor-card card-red">
+                    <i class="fas fa-water icon-sensor"></i>
+                    <div class="sensor-title">Aliran Air (WFlow)</div>
+                    <div class="sensor-value">34</div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card sensor-card card-blue">
+                    <i class="fas fa-wind icon-sensor"></i>
+                    <div class="sensor-title">Oksigen Terlarut (Diss Oxygen)</div>
+                    <div class="sensor-value">10 <span class="sensor-unit">ppm</span></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card sensor-card card-green">
+                    <i class="fas fa-sun icon-sensor"></i>
+                    <div class="sensor-title">Intensitas Cahaya (Lux)</div>
+                    <div class="sensor-value">100 <span class="sensor-unit">Lux</span></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card sensor-card card-cyan">
+                    <i class="fas fa-temperature-high icon-sensor"></i>
+                    <div class="sensor-title">Temperatur Udara (ATemp)</div>
+                    <div class="sensor-value">34 <span class="sensor-unit">C</span></div>
+                    <div class="progress progress-custom">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 68%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card sensor-card card-orange">
+                    <i class="fas fa-bolt icon-sensor"></i>
+                    <div class="sensor-title">EC</div>
+                    <div class="sensor-value">2</div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card sensor-card card-red">
+                    <i class="fas fa-vial icon-sensor"></i>
+                    <div class="sensor-title">PH</div>
+                    <div class="sensor-value">7.1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
